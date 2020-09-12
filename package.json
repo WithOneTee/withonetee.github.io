@@ -1,33 +1,23 @@
 {
-  "name": "minimal-mistakes",
-  "version": "3.4.2",
-  "description": "Minimal Mistakes Jekyll theme npm build scripts",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mmistakes/minimal-mistakes.git"
-  },
-  "keywords": [
-    "jekyll",
-    "theme",
-    "minimal"
-  ],
-  "author": "Michael Rose",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mmistakes/minimal-mistakes/issues"
-  },
-  "homepage": "https://mmistakes.github.io/minimal-mistakes/",
-  "engines": {
-    "node": ">= 0.10.0"
-  },
-  "devDependencies": {
-    "npm-run-all": "^1.7.0",
-    "onchange": "^2.2.0",
-    "uglify-js": "^2.6.1"
-  },
+  "name": "jekyll-instagram-portfolio-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Theme front-end assets",
   "scripts": {
-    "uglify": "uglifyjs assets/js/vendor/jquery/jquery-1.12.4.min.js assets/js/plugins/jquery.fitvids.js assets/js/plugins/jquery.greedy-navigation.js assets/js/plugins/jquery.magnific-popup.js assets/js/plugins/jquery.smooth-scroll.min.js assets/js/plugins/stickyfill.min.js assets/js/_main.js -c -m -o assets/js/main.min.js",
-    "watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
-    "build:js": "npm run uglify"
+    "css:clean": "rm -rf ./web-dist/css && mkdir ./web-dist/css",
+    "css:sass": "node-sass --include-path ./_web-src/scss --source-map ./web-dist/css --output-style compressed ./_web-src/scss/main.scss ./web-dist/css/main.min.css",
+    "css:build": "npm run css:clean && npm run css:sass",
+    "css:watch": "nodemon --ext scss --watch ./_web-src/scss --exec 'npm run css:build'",
+    "watch": "npm run css:watch",
+    "build": "npm run css:build"
+  },
+  "author": "Sergey Sokurenko",
+  "license": "(c) Copyright 2016 Sergey Sokurenko",
+  "devDependencies": {
+    "node-sass": "^3.7.0",
+    "nodemon": "^1.9.2",
+    "uglify-js": "^2.6.2"
+  },
+  "dependencies": {
   }
 }
