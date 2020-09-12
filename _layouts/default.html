@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html>
-    {% include head.html %}
-    <body>
-        {% include navbar.html %}
-        {% include top.html %}
-        {% include about.html %}
-        {% include instagram.html %}
-        {% include contacts.html %}
-        {% include copyright.html %}
-    </body>
+---
+layout: compress
+---
+<!doctype html>
+<html class="no-js" lang="{% if site.language == nil %}en{% else %}{{ site.language }}{% endif %}">
+<head>
+	{% include _head.html %}
+</head>
+<body id="top-of-page" class="{{ layout.format }}">
+	{% unless page.skip_boilerplate %}
+	{% include _navigation.html %}
+	{% endunless %}
+
+	{% include _masthead.html %}
+	{{ content }}
+
+	{% unless page.skip_boilerplate %}
+	{% include _footer.html %}
+	{% endunless %}
+
+	{% include _footer_scripts.html %}
+</body>
 </html>
